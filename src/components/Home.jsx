@@ -23,7 +23,7 @@ const Home = () => {
       dispatch(addUser(res.data));
     } catch (e) {
       if (e.status === 401) {
-        navigate("/login");
+        return navigate("/login");
       }
       console.log(e);
     }

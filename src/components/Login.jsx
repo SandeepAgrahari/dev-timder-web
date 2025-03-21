@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const [email, setEmail] = useState("sandeep@gmail.com");
   const [password, setPassword] = useState("Sandeep@123");
+  const [error, setError] = useState("");
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -23,8 +24,10 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data));
-      navigate("/");
+      setError("");
+      return navigate("/");
     } catch (e) {
+      setError(e?.response?.data);
       console.log(e);
     }
   };
@@ -33,7 +36,24 @@ const Login = () => {
       <div className="bg-base-300 card card-border bg-base-100 w-96">
         <fieldset className="fieldset w-auto bg-base-300 border border-base-300 p-4 rounded-box">
           <legend className="fieldset-legend text-lg">Login</legend>
-
+          {error && (
+            <div role="alert" className="alert alert-error">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6 shrink-0 stroke-current"
+                fill="none"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              <span>{`Error - ${error}`}</span>
+            </div>
+          )}
           <label className="fieldset-label">Email</label>
           <input
             type="email"
