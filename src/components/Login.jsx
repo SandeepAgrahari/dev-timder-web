@@ -11,10 +11,11 @@ const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const apiUrl = import.meta.env.VITE_API_URL;
   const handleLogin = async () => {
     try {
       const res = await axios.post(
-        "http://localhost:3000/login",
+        `${apiUrl}/login`,
         {
           email,
           password,
@@ -22,7 +23,7 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data));
-      navigate("/feed");
+      navigate("/");
     } catch (e) {
       console.log(e);
     }

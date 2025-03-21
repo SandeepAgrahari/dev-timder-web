@@ -11,12 +11,11 @@ function App() {
   return (
     <>
       <Provider store={store}>
-        <Navbar />
         <BrowserRouter basename="/">
           <Routes>
             <Route path="/" element={<Home />}>
+              <Route path="/" element={<Feed />} />
               <Route path="/login" element={<Login />} />
-              <Route path="/feed" element={<Feed />} />
               <Route path="/profile" element={<Profile />} />
             </Route>
           </Routes>
