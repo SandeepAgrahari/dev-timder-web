@@ -5,8 +5,8 @@ import { addUser } from "../redux/features/userSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
-  const [email, setEmail] = useState("sandeep@gmail.com");
-  const [password, setPassword] = useState("Sandeep@123");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [error, setError] = useState("");
 
   const dispatch = useDispatch();
@@ -24,13 +24,24 @@ const Login = () => {
         { withCredentials: true }
       );
       dispatch(addUser(res.data));
-      setError("");
       return navigate("/");
     } catch (e) {
       setError(e?.response?.data);
       console.log(e);
     }
   };
+
+  const handleChange = (e) => {
+    setError("");
+    const { name, value } = e.target;
+    if (name === "email") {
+      setEmail(value);
+    }
+    if (name === "password") {
+      setPassword(value);
+    }
+  };
+
   return (
     <div className="flex justify-center m-30">
       <div className="bg-base-300 card card-border bg-base-100 w-96">
@@ -57,23 +68,21 @@ const Login = () => {
           <label className="fieldset-label">Email</label>
           <input
             type="email"
-            className="input"
+            className="input w-auto"
             placeholder="Email"
             name="email"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => handleChange(e)}
           />
 
           <label className="fieldset-label">Password</label>
           <input
             type="password"
-            className="input"
+            className="input w-auto"
             placeholder="Password"
             name="password"
             value={password}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
+            onChange={(e) => handleChange(e)}
           />
 
           <button className="btn btn-neutral mt-4" onClick={handleLogin}>

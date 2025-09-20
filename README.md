@@ -23,3 +23,9 @@
 - You should not be able to access other route without login
 - If token is not present then redirecto user to login page
 - Logout feature
+- Get the feed and add the feed in the store
+- build the user card on feed
+- Make edit profile component and import it into Profile component
+- Added Patch Api call for profile update
+- convert email in lowercase before saving into db
+- adjust the footer height
