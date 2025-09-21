@@ -32,7 +32,7 @@ const UserCard = ({ user, isProfile = false, handleEdit }) => {
           />
         </figure>
         <div className="card-body text-center">
-          <h2 className="card-titlen text-center text-xl">
+          <h2 className="flex justify-center gap-2 card-titlen text-center text-xl">
             {`${user.firstName} ${user.lastName}`}
             {isProfile && (
               <svg
@@ -42,7 +42,7 @@ const UserCard = ({ user, isProfile = false, handleEdit }) => {
                 viewBox="0 0 24 24"
                 strokeWidth={1.5}
                 stroke="currentColor"
-                className="size-6 cursor-pointer hover:bg-violet-600"
+                className="size-5  cursor-pointer hover:bg-emerald-600 bg-violet-600"
               >
                 <path
                   strokeLinecap="round"
