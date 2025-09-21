@@ -16,7 +16,7 @@ const Feed = () => {
       const res = await axios.get(`${apiUrl}/user/feed`, {
         withCredentials: true,
       });
-      dispatch(addFeed(res.data));
+      dispatch(addFeed(res.data.data));
     } catch (e) {
       console.log(e.message);
     }
@@ -25,8 +25,8 @@ const Feed = () => {
   useEffect(() => {
     getFeed();
   }, []);
-  return feedData?.data?.length ? (
-    <UserCard user={feedData.data[0]} />
+  return feedData?.length > 0 ? (
+    <UserCard user={feedData[0]} />
   ) : (
     "No card Found!"
   );

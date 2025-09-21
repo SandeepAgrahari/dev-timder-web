@@ -1,4 +1,24 @@
+import axios from "axios";
+import { removeUserFromFeed } from "../redux/features/feedSlice";
+import { useDispatch } from "react-redux";
+
 const UserCard = ({ user, isProfile = false, handleEdit }) => {
+  const dispatch = useDispatch();
+  const apiUrl = import.meta.env.VITE_API_URL;
+  const handleUserCard = async (status, userId) => {
+    try {
+      const response = await axios.post(
+        `${apiUrl}/request/send/${status}/${userId}`,
+        {},
+        { withCredentials: true }
+      );
+      if (response.status === 200) {
+        dispatch(removeUserFromFeed(userId));
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   return (
     <div className="flex justify-center m-8">
       <div className="card bg-base-300 w-96 shadow-sm">
@@ -11,8 +31,8 @@ const UserCard = ({ user, isProfile = false, handleEdit }) => {
             width="250px"
           />
         </figure>
-        <div className="card-body">
-          <h2 className="card-title">
+        <div className="card-body text-center">
+          <h2 className="card-titlen text-center text-xl">
             {`${user.firstName} ${user.lastName}`}
             {isProfile && (
               <svg
@@ -33,13 +53,23 @@ const UserCard = ({ user, isProfile = false, handleEdit }) => {
             )}
           </h2>
           <p>
-            {user.age} - {user.age}
+            {user.age} - {user.gender}
           </p>
           <p>{user.about}</p>
           {!isProfile && (
             <div className="card-actions justify-center m-4">
-              <button className="btn btn-primary ">Ignore</button>
-              <button className="btn btn-secondary">Interested</button>
+              <button
+                className="btn btn-soft btn-error"
+                onClick={() => handleUserCard("ignored", user._id)}
+              >
+                Ignore
+              </button>
+              <button
+                className="btn btn-soft btn-success"
+                onClick={() => handleUserCard("interested", user._id)}
+              >
+                Interested
+              </button>
             </div>
           )}
         </div>

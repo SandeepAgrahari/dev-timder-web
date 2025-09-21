@@ -50,7 +50,7 @@ const EditProfile = ({ user, handleEdit, handleToast }) => {
   };
   return (
     <div className="flex justify-center m-8">
-      <div className="flex max-w-lg mx-auto p-6 bg-base-300 card card-border bg-base-100 w-auto">
+      <div className="flex max-w-lg mx-auto p-6 card card-border bg-base-100 w-auto">
         <form className="space-y-6" onSubmit={handleUpdate}>
           <div className="grid grid-cols-2 gap-6">
             <div>
