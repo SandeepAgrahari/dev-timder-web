@@ -3,7 +3,13 @@ const UserCard = ({ user, isProfile = false, handleEdit }) => {
     <div className="flex justify-center m-8">
       <div className="card bg-base-300 w-96 shadow-sm">
         <figure>
-          <img src={user.photoUrl} alt="Shoes" height="200px" width="250px" />
+          <img
+            className="rounded-2xl"
+            src={user.photoUrl}
+            alt="Shoes"
+            height="200px"
+            width="250px"
+          />
         </figure>
         <div className="card-body">
           <h2 className="card-title">

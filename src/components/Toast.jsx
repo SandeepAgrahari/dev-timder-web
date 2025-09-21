@@ -2,7 +2,6 @@
 import ReactDOM from "react-dom";
 
 const Toast = ({ type = "info", message }) => {
-  console.log(123);
   const typeClass = {
     success: "alert-success",
     error: "alert-error",
