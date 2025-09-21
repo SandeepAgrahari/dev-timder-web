@@ -4,8 +4,7 @@ import { useDispatch } from "react-redux";
 import Toast from "./Toast";
 import { addUser } from "../redux/features/userSlice";
 
-const EditProfile = ({ user, handleEdit }) => {
-  const [toast, setToast] = useState(null);
+const EditProfile = ({ user, handleEdit, handleToast }) => {
   const [error, setError] = useState("");
   const { firstName, lastName, email, age, gender, skills, photoUrl, about } =
     user;
@@ -27,10 +26,6 @@ const EditProfile = ({ user, handleEdit }) => {
     const { name, value } = e.target;
     setUserInfo({ ...userInfo, [name]: value });
   };
-  const showToast = (type, message) => {
-    setToast({ type, message });
-    // setTimeout(() => setToast(null), 3000);
-  };
 
   const handleUpdate = async (e) => {
     e.preventDefault();
@@ -45,10 +40,7 @@ const EditProfile = ({ user, handleEdit }) => {
       });
       if (res.status === 200) {
         dispatch(addUser(res.data.data));
-        showToast(
-          "success",
-          res.data.message || "User details updated successfully!"
-        );
+        handleToast(true);
         handleEdit(false);
       }
     } catch (e) {
@@ -181,7 +173,6 @@ const EditProfile = ({ user, handleEdit }) => {
           </div>
         </form>
       </div>
-      {toast !== null && <Toast type={toast.type} message={toast.message} />}
     </div>
   );
 };
