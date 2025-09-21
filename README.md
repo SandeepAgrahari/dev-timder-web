@@ -26,6 +26,9 @@
 - Get the feed and add the feed in the store
 - build the user card on feed
 - Make edit profile component and import it into Profile component
-- Added Patch Api call for profile update
+- Showing toast message on successfull progile update
 - convert email in lowercase before saving into db
 - adjust the footer height
+- New Page- Connection page to display the Logged in User connections
+- New Page- Requests page on that user can see the requests that he/she recieved and its paending for review
+- Added functionality for review the requests(accept/reject)
